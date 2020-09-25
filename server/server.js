@@ -29,7 +29,6 @@ app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
-
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
