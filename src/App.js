@@ -4,34 +4,35 @@ import "./styles.css";
 
 export default class App extends React.Component {
   state = {
-    users: [],
+    image: [],
   };
+
   componentDidMount() {
-    axios.get("/users.json").then((response) => {
-      this.setState({ users: response.data });
+    axios.get('https://dog.ceo/api/breeds/image/random'   )
+    .then(response => {
+    
+      this.setState({ image: response.data.message });
+    })
+    .catch(error => {
+      console.log(error);
     });
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: '',
+    };
+  };
+
   render() {
-    const { users } = this.state;
+    const { image } = this.state;
     return (
-      <div>
-        <ul className="users">
-          {users.map((user) => (
-            <li className="user">
-              <p>
-                <strong>Name:</strong> {user.name}
-              </p>
-              <p>
-                <strong>Email:</strong> {user.email}
-              </p>
-              <p>
-                <strong>City:</strong> {user.address.city}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <picture>
+        < img  alt="" width="300"
+             height="300" src={image}/>
+    </picture>
     );
-  }
+
+}
 }
