@@ -8,6 +8,8 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
+    console.log('Hi there!')
+
     axios.get('https://dog.ceo/api/breeds/image/random'   )
     .then(response => {
     
@@ -28,11 +30,17 @@ export default class App extends React.Component {
   render() {
     const { image } = this.state;
     return (
-      <picture>
-        < img  alt="" width="300"
-             height="300" src={image}/>
-    </picture>
-    );
+      <div>
+        <button onclick="activateLasers()">
+          Activate Lasers
+        </button>
 
+        <picture>
+          <img alt="" width="300"
+                height="300" src={image}
+          />
+        </picture>
+      </div>
+    );
 }
 }

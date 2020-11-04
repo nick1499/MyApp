@@ -1,4 +1,4 @@
-const hostname = '134.122.34.37';
+const hostname = 'localhost';
 const port = 80;
 const express = require('express')
 const app = express()
@@ -7,27 +7,35 @@ const path = require("path");
 var mysql = require('mysql');
 var con = mysql.createConnection({
   socketPath : '/var/run/mysqld/mysqld.sock',
-  host: '134.122.34.37',
+  host: hostname,
   port: '80',
   user: 'root',
   password: 'GoodGuy1n',
   database : 'aliens',
   insecureAuth : false 
 });
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Database connected!");
-});
 
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Database connected!");
+// });
 
+// app.get('/', function (req, res) {
+//   res.send(express.)
+// })
 
+// app.use(express.static(path.join(__dirname, "..", "public/build")));
+// app.use(express.static("public"));
 
-app.use(express.static(path.join(__dirname, "..", "public/build")));
+// app.use((req, res, next) => {
+//   res.sendFile(path.join(__dirname, "..", "public/", "index.html"));
+// });
+
+app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
-
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "public/build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
 app.listen(port, hostname, () => {
