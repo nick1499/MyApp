@@ -7,18 +7,3 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 
 
-
-// const title = (
-
-//     <h1>Alien database</h1>
-
-// );
-
-
-
-// ReactDOM.render(
-
-
-//     title,
-//   document.getElementById('root')
-// );
