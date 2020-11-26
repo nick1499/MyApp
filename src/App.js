@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton';
-
+import AlienPicture from './AlienPicture.js';
+import { View, Image, StyleSheet } from 'react';
 
 export default class App extends React.Component {
 
@@ -36,6 +37,7 @@ export default class App extends React.Component {
     }));
   }
 
+
 //nbsp stands for no-break space
   render() {
     return (
@@ -55,14 +57,23 @@ export default class App extends React.Component {
 <Dropdown.Item href="#/action-2">Aliens</Dropdown.Item>
 </DropdownButton>
 
-  < img  alt="" width="300"
-height="300" src='/elite.png'/>
+
+          
+
+        <AlienPicture style={{height: 10}} />  
+        
+        
+
+        <AlienPicture style={{width:"200", height:"200"}} >  </AlienPicture>
+
 <br></br>
         <button onClick={this.handleClick}>
         The counter is at &nbsp;  
         { this.state.counter }
       
         </button>
+
+
       </div>
     
     );
