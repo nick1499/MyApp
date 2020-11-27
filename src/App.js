@@ -60,11 +60,12 @@ export default class App extends React.Component {
 
           
 
-        <AlienPicture style={{ height : "10" }} >
-{this.props.style}
+        <AlienPicture height="100" width="100" >
         </AlienPicture>  
 
-        
+        <AlienPicture height="200" width="200" >
+        </AlienPicture>  
+          
 
         
 

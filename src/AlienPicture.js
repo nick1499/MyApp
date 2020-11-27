@@ -1,20 +1,14 @@
 import React, {Component} from 'react'; 
   
 class AlienPicture extends Component { 
-    constructor(props)
-  {
-    super(props);
-    this.state = { 
-height : '100',
-width : '500'
-};
-  }
 
-    render(i) 
+
+    render() 
     { 
         return     <img  
             
-            style = {this.props.style}
+            height = {this.props.height}
+            width = {this.props.width}
             src = '/elite.png'
            > 
            </img>
