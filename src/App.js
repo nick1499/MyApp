@@ -60,11 +60,13 @@ export default class App extends React.Component {
 
           
 
-        <AlienPicture style={{height: 10}} />  
-        
+        <AlienPicture style={{ height : "10" }} >
+{this.props.style}
+        </AlienPicture>  
+
         
 
-        <AlienPicture style={{width:"200", height:"200"}} >  </AlienPicture>
+        
 
 <br></br>
         <button onClick={this.handleClick}>
