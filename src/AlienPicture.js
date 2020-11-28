@@ -6,10 +6,12 @@ class AlienPicture extends Component {
     render() 
     { 
         return     <img  
-            
+            subtitle = {this.props.subtitle}
             height = {this.props.height}
             width = {this.props.width}
-            src = '/elite.png'
+            src = {this.props.src}
+            
+
            > 
            </img>
   } 

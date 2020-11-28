@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import AlienPicture from './AlienPicture.js';
 import { View, Image, StyleSheet } from 'react';
+import './styles.css';
 
 export default class App extends React.Component {
 
@@ -58,15 +59,16 @@ export default class App extends React.Component {
 </DropdownButton>
 
 
-          
 
-        <AlienPicture height="100" width="100" >
-        </AlienPicture>  
+        
+    <AlienPicture height="100" width="100" src="/grunt.png"  />
+    <div className="subtitle">Unggoy</div>
 
-        <AlienPicture height="200" width="200" >
-        </AlienPicture>  
-          
-
+    <AlienPicture height="200" width="200" src="/jackal.png" />
+    <div className="subtitle">Kig-Yar</div>
+    
+    <AlienPicture height="300" width="300" src="/elite.png" />
+    <div className="subtitle">Sangheili</div>
         
 
 <br></br>
