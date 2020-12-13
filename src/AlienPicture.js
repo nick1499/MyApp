@@ -5,15 +5,23 @@ class AlienPicture extends Component {
 
     render() 
     { 
-        return     <img  
-            subtitle = {this.props.subtitle}
+        return (    
+      
+<div>
+        <img  
+        
             height = {this.props.height}
             width = {this.props.width}
             src = {this.props.src}
             
 
-           > 
+> 
+
            </img>
+           
+           <figcaption> {this.props.subtitle} </figcaption>
+           </div>
+           )
   } 
 }   
   

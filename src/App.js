@@ -53,22 +53,27 @@ export default class App extends React.Component {
         <input type="submit" value="Search" class="dropbtn" />
    </form>
 
-<DropdownButton id="dropdown-basic-button" title="Categories" variant="outline-dark">
-<Dropdown.Item href="http://134.122.34.37/planets.html">Planets</Dropdown.Item>
-<Dropdown.Item href="#/action-2">Aliens</Dropdown.Item>
+<DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
+<Dropdown.Item>Unggoy</Dropdown.Item>
+<Dropdown.Item>Kig-Yar</Dropdown.Item>
+<Dropdown.Item>Sangheili</Dropdown.Item>
+</DropdownButton>
+
+<br></br>
+
+<DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
+<Dropdown.Item AlienPicture  >Unggoy</Dropdown.Item>
+<Dropdown.Item>Kig-Yar</Dropdown.Item>
+<Dropdown.Item>Sangheili</Dropdown.Item>
 </DropdownButton>
 
 
-
         
-    <AlienPicture height="100" width="100" src="/grunt.png"  />
-    <div className="subtitle">Unggoy</div>
+    <AlienPicture height="100" width="100" src="/grunt.png" subtitle = "Unggoy" />
 
-    <AlienPicture height="200" width="200" src="/jackal.png" />
-    <div className="subtitle">Kig-Yar</div>
+    <AlienPicture height="200" width="200" src="/jackal.png" subtitle = "Kig-Yar"/>
     
-    <AlienPicture height="300" width="300" src="/elite.png" />
-    <div className="subtitle">Sangheili</div>
+    <AlienPicture height="300" width="300" src="/elite.png" subtitle = "Sangheili"/>
         
 
 <br></br>
@@ -85,32 +90,3 @@ export default class App extends React.Component {
   }
 }
 
-
-// const element = (
-// <div>
-// <h1>Alien database</h1>
-
-// <form action="http://134.122.34.37"  >
-//       <input type="submit" value="Homepage" class="dropbtn" />
-//   </form>
-//   <form action="http://134.122.34.37/search.html"  >
-//         <input type="submit" value="Search" class="dropbtn" />
-//     </form>
-
-// <DropdownButton id="dropdown-basic-button" title="Categories" variant="outline-dark">
-// <Dropdown.Item href="http://134.122.34.37/planets.html">Planets</Dropdown.Item>
-// <Dropdown.Item href="#/action-2">Aliens</Dropdown.Item>
-// </DropdownButton>
-
-
-// <a href="#" onClick={handleClick}>
-//       Click me, a console log will enter
-//     </a>
-
-
-//     < img  alt="" width="300"
-//   height="300" src='/elite.png'/>
-
-// </div>
-
-// );
