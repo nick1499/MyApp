@@ -27,17 +27,19 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {counter: 0,
+      png: '',
     show : true};
    // This binding is necessary to make `this` work in the callback
-   this.handleClick = this.handleClick.bind(this);
+   this.alienSelect = this.alienSelect.bind(this);
   }
 
-  handleClick() {
+
+  
+  alienSelect() {
     this.setState(state => ({
-      counter: this.state.counter + 1
+      png:  '/grunt.png'
     }));
   }
-
 
 //nbsp stands for no-break space
   render() {
@@ -54,7 +56,7 @@ export default class App extends React.Component {
    </form>
 
 <DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
-<Dropdown.Item>Unggoy</Dropdown.Item>
+<Dropdown.Item onClick={this.alienSelect}> Unggoy</Dropdown.Item>
 <Dropdown.Item>Kig-Yar</Dropdown.Item>
 <Dropdown.Item>Sangheili</Dropdown.Item>
 </DropdownButton>
@@ -62,14 +64,15 @@ export default class App extends React.Component {
 <br></br>
 
 <DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
-<Dropdown.Item AlienPicture  >Unggoy</Dropdown.Item>
-<Dropdown.Item>Kig-Yar</Dropdown.Item>
-<Dropdown.Item>Sangheili</Dropdown.Item>
+<Dropdown.Item>100 x 100</Dropdown.Item>
+<Dropdown.Item>200 x 200</Dropdown.Item>
+<Dropdown.Item>300 x 300</Dropdown.Item>
 </DropdownButton>
 
-
+{/* onclick alienSelect triggers the function (Y)  , but png/state is not being updated. 
+src uses the state of png, not sure if updates automatically*/}
         
-    <AlienPicture height="100" width="100" src="/grunt.png" subtitle = "Unggoy" />
+    <AlienPicture height="100" width="100" src={this.state.png} subtitle = "Unggoy" />
 
     <AlienPicture height="200" width="200" src="/jackal.png" subtitle = "Kig-Yar"/>
     
@@ -77,11 +80,7 @@ export default class App extends React.Component {
         
 
 <br></br>
-        <button onClick={this.handleClick}>
-        The counter is at &nbsp;  
-        { this.state.counter }
-      
-        </button>
+
 
 
       </div>
