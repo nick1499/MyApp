@@ -6,8 +6,13 @@ import AlienPicture from './AlienPicture.js';
 import { View, Image, StyleSheet } from 'react';
 import './styles.css';
 
-export default class App extends React.Component {
+var alien;
+var size;
+var name;
 
+export default class App extends React.Component {
+  
+  
 
   // step 1 constructor is called first when going through the render() function
   //initializes this.state with the current time
@@ -26,20 +31,32 @@ export default class App extends React.Component {
  
   constructor(props) {
     super(props);
-    this.state = {counter: 0,
+    this.state = {
       png: '',
-    show : true};
-   // This binding is necessary to make `this` work in the callback
-   this.alienSelect = this.alienSelect.bind(this);
+      height: 0,
+      width: 0,
+      subtitle: ''
+    };
+   // This binding is necessary to make `this` work in the callback, can be binded in the function itself
+  //  this.alienSelect = this.alienSelect.bind(this);
   }
 
 
   
-  alienSelect() {
+  alienSelect(alien, name) {
     this.setState(state => ({
-      png:  '/grunt.png'
+      png:  alien,
+      subtitle: name
     }));
   }
+
+sizeSelect(size){
+this.setState(state => ({
+  height: size,
+  width: size
+}));
+}
+
 
 //nbsp stands for no-break space
   render() {
@@ -56,28 +73,22 @@ export default class App extends React.Component {
    </form>
 
 <DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
-<Dropdown.Item onClick={this.alienSelect}> Unggoy</Dropdown.Item>
-<Dropdown.Item>Kig-Yar</Dropdown.Item>
-<Dropdown.Item>Sangheili</Dropdown.Item>
+<Dropdown.Item onClick={this.alienSelect.bind(this, alien="/grunt.png", name="Unggoy")} >Unggoy</Dropdown.Item>
+<Dropdown.Item onClick={this.alienSelect.bind(this, alien="/jackal.png", name="Kig-Yar")} >Kig-Yar</Dropdown.Item>
+<Dropdown.Item onClick={this.alienSelect.bind(this, alien="/elite.png", name="Sangheili")} >Sangheili</Dropdown.Item>
 </DropdownButton>
 
 <br></br>
 
 <DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
-<Dropdown.Item>100 x 100</Dropdown.Item>
-<Dropdown.Item>200 x 200</Dropdown.Item>
-<Dropdown.Item>300 x 300</Dropdown.Item>
+<Dropdown.Item onClick={this.sizeSelect.bind(this, size="100")}>100 x 100</Dropdown.Item>
+<Dropdown.Item onClick={this.sizeSelect.bind(this, size="200")}>200 x 200</Dropdown.Item>
+<Dropdown.Item onClick={this.sizeSelect.bind(this, size="300")}>300 x 300</Dropdown.Item>
 </DropdownButton>
 
-{/* onclick alienSelect triggers the function (Y)  , but png/state is not being updated. 
-src uses the state of png, not sure if updates automatically*/}
         
-    <AlienPicture height="100" width="100" src={this.state.png} subtitle = "Unggoy" />
+    <AlienPicture height={this.state.height} width={this.state.width} src={this.state.png} subtitle = {this.state.subtitle} />
 
-    <AlienPicture height="200" width="200" src="/jackal.png" subtitle = "Kig-Yar"/>
-    
-    <AlienPicture height="300" width="300" src="/elite.png" subtitle = "Sangheili"/>
-        
 
 <br></br>
 
