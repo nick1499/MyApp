@@ -3,12 +3,15 @@ import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import AlienPicture from './AlienPicture.js';
+import Planets from './Planets.js';
+import Aliens from './Aliens.js';
 import { View, Image, StyleSheet } from 'react';
 import './styles.css';
 
 var alien;
 var size;
 var name;
+var page;
 
 export default class App extends React.Component {
   
@@ -35,7 +38,10 @@ export default class App extends React.Component {
       png: '',
       height: 0,
       width: 0,
-      subtitle: ''
+      subtitle: '',
+      showPlanets: false,
+      showAliens: false,
+      showAll: true
     };
    // This binding is necessary to make `this` work in the callback, can be binded in the function itself
   //  this.alienSelect = this.alienSelect.bind(this);
@@ -43,7 +49,7 @@ export default class App extends React.Component {
 
 
   
-  alienSelect(alien, name) {
+alienSelect(alien, name) {
     this.setState(state => ({
       png:  alien,
       subtitle: name
@@ -57,9 +63,27 @@ this.setState(state => ({
 }));
 }
 
+pageSelect(page){
+  switch (page){
+    case "planets":
+      this.setState(state => ({
+        showPlanets: !this.state.showPlanets,
+        showAll: !this.state.showAll
+      }));
+      break;
+    case "aliens":
+    this.setState(state => ({
+      showAliens: !this.state.showAliens,
+      showAll: !this.state.showAll
+    }));
+      break;
+    
+  }
+}
 
 //nbsp stands for no-break space
   render() {
+    const { showPlanets, showAliens, showAll } = this.state;
     return (
       <div>
        
@@ -68,32 +92,37 @@ this.setState(state => ({
    <form action="http://134.122.34.37"  >
    <input type="submit" value="Homepage" class="dropbtn" />
    </form>
-   <form action="http://134.122.34.37/search.html"  >
-        <input type="submit" value="Search" class="dropbtn" />
-   </form>
 
-<DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
+{showAll && <button onClick={this.pageSelect.bind(this, page="planets")}  class="dropbtn">
+To planets page
+</button>}
+
+{showAll && <button onClick={this.pageSelect.bind(this, page="aliens")}  class="dropbtn">
+To aliens page
+</button>}
+
+{showAll && <DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/grunt.png", name="Unggoy")} >Unggoy</Dropdown.Item>
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/jackal.png", name="Kig-Yar")} >Kig-Yar</Dropdown.Item>
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/elite.png", name="Sangheili")} >Sangheili</Dropdown.Item>
-</DropdownButton>
+</DropdownButton>}
 
 <br></br>
 
-<DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
+{showAll && <DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="100")}>100 x 100</Dropdown.Item>
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="200")}>200 x 200</Dropdown.Item>
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="300")}>300 x 300</Dropdown.Item>
-</DropdownButton>
+</DropdownButton>}
 
         
-    <AlienPicture height={this.state.height} width={this.state.width} src={this.state.png} subtitle = {this.state.subtitle} />
+{showAll && <AlienPicture height={this.state.height} width={this.state.width} src={this.state.png} subtitle = {this.state.subtitle} />}
 
 
 <br></br>
 
-
-
+{showPlanets && <Planets />}
+{showAliens && <Aliens />}
       </div>
     
     );
