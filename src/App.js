@@ -66,8 +66,8 @@ this.setState(state => ({
 }));
 }
 
-createOnClick(){
-  APIClient.create();
+createOnClick(alien_name1){
+  APIClient.create(alien_name1);
 }
 
 pageSelect(page){
