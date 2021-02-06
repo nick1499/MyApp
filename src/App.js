@@ -7,11 +7,14 @@ import Planets from './Planets.js';
 import Aliens from './Aliens.js';
 import { View, Image, StyleSheet } from 'react';
 import './styles.css';
+import APIClient from './APIClient.js';
 
 var alien;
 var size;
 var name;
 var page;
+var alien_name1;
+
 
 export default class App extends React.Component {
   
@@ -63,6 +66,10 @@ this.setState(state => ({
 }));
 }
 
+createOnClick(){
+  APIClient.create();
+}
+
 pageSelect(page){
   switch (page){
     case "planets":
@@ -101,7 +108,10 @@ To planets page
 To aliens page
 </button>}
 
-{showAll && <DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
+{showPlanets && <Planets />}
+{showAliens && <Aliens />}
+
+{showAliens && <DropdownButton id="dropdown-basic-button" title="Select alien" variant="outline-dark">
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/grunt.png", name="Unggoy")} >Unggoy</Dropdown.Item>
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/jackal.png", name="Kig-Yar")} >Kig-Yar</Dropdown.Item>
 <Dropdown.Item onClick={this.alienSelect.bind(this, alien="/elite.png", name="Sangheili")} >Sangheili</Dropdown.Item>
@@ -109,20 +119,21 @@ To aliens page
 
 <br></br>
 
-{showAll && <DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
+{showAliens && <DropdownButton id="dropdown-basic-button" title="Select height and width" variant="outline-dark">
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="100")}>100 x 100</Dropdown.Item>
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="200")}>200 x 200</Dropdown.Item>
 <Dropdown.Item onClick={this.sizeSelect.bind(this, size="300")}>300 x 300</Dropdown.Item>
 </DropdownButton>}
 
         
-{showAll && <AlienPicture height={this.state.height} width={this.state.width} src={this.state.png} subtitle = {this.state.subtitle} />}
+{showAliens && <AlienPicture height={this.state.height} width={this.state.width} src={this.state.png} subtitle = {this.state.subtitle} />}
 
 
 <br></br>
 
-{showPlanets && <Planets />}
-{showAliens && <Aliens />}
+
+<button onClick={this.createOnClick.bind(this, alien_name1="bowser")}> Create </button>
+
       </div>
     
     );
