@@ -8,6 +8,9 @@ import Aliens from './Aliens.js';
 import { View, Image, StyleSheet } from 'react';
 import './styles.css';
 import APIClient from './APIClient.js';
+import HomePage from './HomePage.js';
+import SplashPage from './SplashPage.js';
+import AlienPage from './AlienPage.js';
 
 var alien;
 var size;
@@ -15,6 +18,9 @@ var name;
 var page;
 var alien_name1;
 
+var alienId = 0;
+
+var route = "splash";
 
 export default class App extends React.Component {
   
@@ -70,39 +76,55 @@ createOnClick(alien_name1){
   APIClient.create(alien_name1);
 }
 
-pageSelect(page){
-  switch (page){
-    case "planets":
-      this.setState(state => ({
-        showPlanets: !this.state.showPlanets,
-        showAll: !this.state.showAll
-      }));
-      break;
-    case "aliens":
-    this.setState(state => ({
-      showAliens: !this.state.showAliens,
-      showAll: !this.state.showAll
-    }));
-      break;
+// pageSelect(page){
+//   switch (page){
+//     case "planets":
+//       this.setState(state => ({
+//         showPlanets: !this.state.showPlanets,
+//         showAll: !this.state.showAll
+//       }));
+//       break;
+//     case "aliens":
+//     this.setState(state => ({
+//       showAliens: !this.state.showAliens,
+//       showAll: !this.state.showAll
+//     }));
+//       break;
     
-  }
-}
+//   }
+// }
+
+
 
 //nbsp stands for no-break space
   render() {
+    
+      switch(this.route){
+        case "home": {<HomePage />}
+        break;
+        case "splash": {<SplashPage />}
+        break;
+        case "alien": {<AlienPage  alienId />} //should be feeding the variable id
+        
+        default: {<SplashPage />}
+        
+            }
+          
+
+
     const { showPlanets, showAliens, showAll } = this.state;
     return (
       <div>
        
-       <h1>Alien database</h1>
+       <h1>Humanity's alien database</h1>
 
    <form action="http://134.122.34.37"  >
-   <input type="submit" value="Homepage" class="dropbtn" />
+   <input type="submit" route="home" class="dropbtn" />
    </form>
 
-{showAll && <button onClick={this.pageSelect.bind(this, page="planets")}  class="dropbtn">
+{/* {showAll && <button onClick={this.pageSelect.bind(this, page="planets")}  class="dropbtn">
 To planets page
-</button>}
+</button>} */}
 
 {showAll && <button onClick={this.pageSelect.bind(this, page="aliens")}  class="dropbtn">
 To aliens page
