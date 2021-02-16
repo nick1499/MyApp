@@ -17,11 +17,12 @@ var alien;
 var size;
 var name;
 var page;
+var page1;
 var alien_name1;
 
 var alienId = 0;
 
-var route = "splash";
+
 
 export default class App extends React.Component {
   
@@ -35,7 +36,8 @@ export default class App extends React.Component {
       subtitle: '',
       showPlanets: false,
       showAliens: false,
-      showAll: true
+      showAll: true,
+      route: "splash"
     };
    // This binding is necessary to make `this` work in the callback, can be binded in the function itself
   //  this.alienSelect = this.alienSelect.bind(this);
@@ -61,33 +63,30 @@ export default class App extends React.Component {
 //   APIClient.create(alien_name1);
 // }
 
-// pageSelect(page){
-//   switch (page){
-//     case "planets":
-//       this.setState(state => ({
-//         showPlanets: !this.state.showPlanets,
-//         showAll: !this.state.showAll
-//       }));
-//       break;
-//     case "aliens":
-//     this.setState(state => ({
-//       showAliens: !this.state.showAliens,
-//       showAll: !this.state.showAll
-//     }));
-//       break;
-    
-//   }
-// }
+pageSelect(page1){
+  
+  switch (page1){
+    case "home": this.setState(state => ({
+      route: "home"
+    }))
+    break;
+    case "alien": this.setState(state => ({
+      route: "alien"
+    }))
+    break;
+  }
+}
 
 
 
 //nbsp stands for no-break space
   render() {
+    var { route, showPlanets, showAliens, showAll } = this.state;
     
-      switch(this.route){
-        case "home": page = <HomePage />
+      switch(route){
+        case "home": page = <HomePage page1="home"/>
         break;
-        case "splash": page = <SplashPage />
+        case "splash": page = <SplashPage page1="splash"/>
         break;
         case "alien": page = <AlienPage  alienId /> //should be feeding the variable id
         
@@ -97,20 +96,18 @@ export default class App extends React.Component {
           
 
 
-    const { showPlanets, showAliens, showAll } = this.state;
+   
     return (
 
-      
-
       <div>
-      
-      <AlienButton action="http://134.122.34.37"  >
-    Home
-   <input route="home"/>
-   </AlienButton>
+    
+{/* 
+      <AlienButton title="Home" onClick={this.pageSelect.bind(this, page1="home")} >
+      Home
+   </AlienButton> */}
 
+   {page}
        
-       {page}
   
 {/* {showAll && <button onClick={this.pageSelect.bind(this, page="planets")}  class="dropbtn">
 To planets page

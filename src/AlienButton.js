@@ -7,7 +7,9 @@ render()
 {
 return (
 <div>
-<button>This is an alien button</button>
+<button onClick={this.props.onClick}    >
+{this.props.title}
+</button>
 </div>
 )
 
