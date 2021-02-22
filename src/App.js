@@ -63,7 +63,7 @@ export default class App extends React.Component {
 //   APIClient.create(alien_name1);
 // }
 
-pageSelect(page1){
+static async pageSelect(page1){
   
   switch (page1){
     case "home": this.setState(state => ({
@@ -101,8 +101,8 @@ pageSelect(page1){
 
       <div>
     
-{/* 
-      <AlienButton title="Home" onClick={this.pageSelect.bind(this, page1="home")} >
+
+      {/* <AlienButton title="Home" onClick={this.pageSelect.bind(this, page1="home")} >
       Home
    </AlienButton> */}
 
