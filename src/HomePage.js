@@ -10,7 +10,6 @@ return (
 <h2>This is the HomePage page</h2>
 </div>
 )
-
 }
 }
 

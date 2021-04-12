@@ -12,6 +12,7 @@ import HomePage from './HomePage.js';
 import SplashPage from './SplashPage.js';
 import AlienPage from './AlienPage.js';
 import AlienButton from './AlienButton.js';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
 var alien;
 var size;
@@ -22,26 +23,52 @@ var alien_name1;
 
 var alienId = 0;
 
+function App() {
+return (
+  <div className="wrapper">
+  <BrowserRouter>
+  <Switch>
+
+  <Route path="/HomePage">
+  <HomePage />
+  </Route>
+
+  <Route path="/">
+  <SplashPage />
+  </Route>
+ 
+  </Switch>
+  </BrowserRouter>
+  </div>
+)  
+}
+  
+  export default App;
 
 
-export default class App extends React.Component {
+
+// export default class App extends React.Component {
+
+// export default class App extends React.Component {
   
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      png: '',
-      height: 0,
-      width: 0,
-      subtitle: '',
-      showPlanets: false,
-      showAliens: false,
-      showAll: true,
-      route: "splash"
-    };
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       png: '',
+//       height: 0,
+//       width: 0,
+//       subtitle: '',
+//       showPlanets: false,
+//       showAliens: false,
+//       showAll: true,
+//       route: "splash",
+//     };
+//     // this.pageSelect = this.pageSelect.bind(this);
+//   }
+
    // This binding is necessary to make `this` work in the callback, can be binded in the function itself
   //  this.alienSelect = this.alienSelect.bind(this);
-  }
 
 
   
@@ -63,51 +90,67 @@ export default class App extends React.Component {
 //   APIClient.create(alien_name1);
 // }
 
-static async pageSelect(page1){
-  
-  switch (page1){
-    case "home": this.setState(state => ({
-      route: "home"
-    }))
-    break;
-    case "alien": this.setState(state => ({
-      route: "alien"
-    }))
-    break;
-  }
-}
+
+//the issue is actually changing the state here, the function works but it is setting the state of the alien button component, not the app component
 
 
+// pageSelect(page1) {
+//   console.log("made it to app.js with " + page1)
+//   switch (page1){
+//     case "home": 
+//     this.setState({route: 'home'});
+//     break;
+//     case "alien": this.setState(({
+//       route: "alien"
+//     }))
+//     break;
+//   }
+//   console.log("made 2 it to app.js with " + page1)
+// }
+
+
+
+// static async pageSelect(page1) {
+//   console.log("made it to app.js with " + page1)
+//   switch ("home"){
+//     case "home": this.setState(state => {
+//      return {route: "home" }
+//     });
+//     break;
+//     case "alien": this.setState(({
+//       route: "alien"
+//     }))
+//     break;
+//   }
+//   console.log("made 2 it to app.js with " + page1)
+// }
 
 //nbsp stands for no-break space
-  render() {
-    var { route, showPlanets, showAliens, showAll } = this.state;
+  // render() {
+  //   var { route, showPlanets, showAliens, showAll } = this.state;
     
-      switch(route){
-        case "home": page = <HomePage page1="home"/>
-        break;
-        case "splash": page = <SplashPage page1="splash"/>
-        break;
-        case "alien": page = <AlienPage  alienId /> //should be feeding the variable id
+
+  //     switch(route){
+  //       case "home": page = <HomePage page1="home"/>
+  //       break;
+  //       case "splash": page = <SplashPage page1="splash"/>
+  //       break;
+  //       case "alien": page = <AlienPage  alienId /> //should be feeding the variable id
         
-        default: page = <SplashPage />
+  //       default: page = <SplashPage />
         
-            }
+  //           }
           
+  //   return (
+  //     <div>
 
 
+  //  {page}
+
+  
    
-    return (
-
-      <div>
-    
-
-      {/* <AlienButton title="Home" onClick={this.pageSelect.bind(this, page1="home")} >
-      Home
-   </AlienButton> */}
-
-   {page}
-       
+   {/* <AlienButton route = "HomePage" title = "Enter Database"  onClick={this.pageSelect.bind(this, page1 = "home")} >  
+</AlienButton> */}
   
 {/* {showAll && <button onClick={this.pageSelect.bind(this, page="planets")}  class="dropbtn">
 To planets page
@@ -143,9 +186,11 @@ To aliens page
 
 <button onClick={this.createOnClick.bind(this, alien_name1="bowser")}> Create </button> */}
 
-      </div>
+{/* </div>
     
     );
   }
-}
+} */}
+
+
 
