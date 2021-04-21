@@ -55,7 +55,23 @@ h1 {
   top: 55%;
 }
 
+h1 {
+  color: rgb(19, 44, 77);
+  text-shadow: 2px 2px 4px #0b0f3a;
+  position: fixed;
+  left: 5%;
+  top: 5%;
+}
+
 .button1 {
 color: green;
 
+}
+
+h2 {
+  color: rgb(19, 44, 77);
+  text-shadow: 2px 2px 4px #0b0f3a;
+  position: fixed;
+  left: 10%;
+  top: 50%;
 }

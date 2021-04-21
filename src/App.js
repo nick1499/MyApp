@@ -47,7 +47,7 @@ return (
 
 
 
-// export default class App extends React.Component {
+
 
 // export default class App extends React.Component {
   
@@ -94,53 +94,11 @@ return (
 //the issue is actually changing the state here, the function works but it is setting the state of the alien button component, not the app component
 
 
-// pageSelect(page1) {
-//   console.log("made it to app.js with " + page1)
-//   switch (page1){
-//     case "home": 
-//     this.setState({route: 'home'});
-//     break;
-//     case "alien": this.setState(({
-//       route: "alien"
-//     }))
-//     break;
-//   }
-//   console.log("made 2 it to app.js with " + page1)
-// }
-
-
-
-// static async pageSelect(page1) {
-//   console.log("made it to app.js with " + page1)
-//   switch ("home"){
-//     case "home": this.setState(state => {
-//      return {route: "home" }
-//     });
-//     break;
-//     case "alien": this.setState(({
-//       route: "alien"
-//     }))
-//     break;
-//   }
-//   console.log("made 2 it to app.js with " + page1)
-// }
-
 //nbsp stands for no-break space
   // render() {
   //   var { route, showPlanets, showAliens, showAll } = this.state;
     
 
-  //     switch(route){
-  //       case "home": page = <HomePage page1="home"/>
-  //       break;
-  //       case "splash": page = <SplashPage page1="splash"/>
-  //       break;
-  //       case "alien": page = <AlienPage  alienId /> //should be feeding the variable id
-        
-  //       default: page = <SplashPage />
-        
-  //           }
-          
   //   return (
   //     <div>
 
