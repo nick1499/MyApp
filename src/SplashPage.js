@@ -1,16 +1,19 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom';
 import AlienButton from './AlienButton.js';
+import APIClient from './APIClient.js';
+import axios from 'axios';
 
-export default function SplashPage() { 
-    
+//this used to be function not a component
+//export default function SplashPage() { 
+export default class SplashPage extends React.Component {
 
+render(){
   const divStyle = {
     position: 'absolute',
     bottom: '62%',
     left: '5%',
   };
-
 return (
 <div>
 
@@ -32,15 +35,5 @@ return (
         </div>
 
 )
-
-
 }
-
-
-{/* <nav>
-<ul>
-  <AlienButton title="Link to home page" Link to="/HomePage"><Link to="/HomePage"></Link>
-  </AlienButton>
-</ul>
-</nav>
-</div> */}
+}

@@ -23,29 +23,48 @@ var alien_name1;
 
 var alienId = 0;
 
+// function redirect(){
+//   window.location.href = 'http://134.122.34.37:70/show';
+//   // maybe can add spinner while loading
+//   return null;
+// }
+
 function App() {
+
+
+
+  
 return (
+  
   <div className="wrapper">
   <BrowserRouter>
   <Switch>
 
-  <Route path="/HomePage">
-  <HomePage />
-  </Route>
-
-  <Route path="/">
-  <SplashPage />
-  </Route>
+ <Route path="/HomePage">
+      <HomePage /> 
+ </Route>        
+ <Route path="/">
+ <SplashPage />
+ </Route>
  
   </Switch>
   </BrowserRouter>
   </div>
-)  
-}
   
+
+//code to get homepage to route directly to db
+// <Route exact path='/HomePage' render={() => 
+//   redirect()
+// } /> 
+
+
+)}
+
+
+
+
+
   export default App;
-
-
 
 
 
@@ -91,7 +110,7 @@ return (
 // }
 
 
-//the issue is actually changing the state here, the function works but it is setting the state of the alien button component, not the app component
+
 
 
 //nbsp stands for no-break space

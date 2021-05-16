@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const path = require("path");
 
-//commented out because mysql is started in NickAPI
+//normally the db connection is commented out because mysql is started in NickAPI
 
 // var mysql = require('mysql');
 // var con = mysql.createConnection({
