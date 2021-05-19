@@ -3,23 +3,54 @@ import { Link } from 'react-router-dom';
 import AlienButton from './AlienButton.js';
 import './styles.css';
 import axios from 'axios';
+// import MaterialTable from "material-table";
 
 const divStyle = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: '15%',
     left: '5%',
   };
 const divStyle2 = {
-    position: 'absolute',
+    position: 'fixed',
     bottom: '10%',
     left: '5%',
   };
-const tableStyle = {
+const tableStyle1 = {
+    position: 'relative',
+    top: '40%',
+    left: '30%',
+    border: '2px solid black',
+    width: '65%',
+    height: '65%',
+  };
+
+const tableStyle2 = {
   position: 'relative',
-  left: '90%'
+  top: '40%',
+  left: '30%',
+  border: '1px solid black',
+  width: '65%',
+  height: '65%',
 };
 
+const tdStyle = {
+  width: '33.3%',
+  padding: '15px;',
+};
 
+const thStyle = {
+  backgroundColor: '132C4D',
+  color: 'white',
+  width: '33.3%',
+  text: 'bold',
+};
+
+const trStyle = {
+  width: '10px',
+  height: '10px',
+  textAlign: 'center',
+  border: '2px solid black',
+}
 
 class HomePage extends Component { 
 
@@ -52,11 +83,14 @@ render()
 {
   const { response } = this.state;
 return (
-<div>
+<div style="overflow-x:auto;">
 <h1>Humanity's 
 <br></br>alien 
 <br></br>database</h1>
 
+{/* <MaterialTable title="Employee Details" data={response}  /> */}
+
+{/* columns={columns} */}
 <nav>
 <ul>
 <Link to="/SplashPage">
@@ -68,16 +102,33 @@ return (
 <AlienButton title="Add your alien sighting" style={divStyle} >
 </AlienButton> 
 
-
+<table style={tableStyle1}>
+      <tr style={trStyle}>
+      <th style={thStyle}>Alien ID</th>
+          <th style={thStyle}>Alien Name</th>
+          <th style={thStyle}>Alien Planet</th>
+          </tr>
+      </table>
+      
+      
 {response &&
   response.map(todo => {
     return (
-      <table style={tableStyle} >
-        <tr>
-          <td>{todo.alien_id}</td>
-          <td>
+      
+      <table style={tableStyle2} >
+        
+          
+        
+        <tr style={trStyle}>
+          <td style={tdStyle}>
+            {todo.alien_id}</td>
+          <td style={tdStyle}>
+            {todo.alien_name}</td>
+            <td style={tdStyle}>
+            {todo.alien_planet}</td>
+          {/* <td>
             <p key={todo.alien_id}>{todo.alien_name}</p>
-          </td>
+          </td> */}
         </tr>
       </table>
     );
