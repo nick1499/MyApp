@@ -5,6 +5,9 @@ import './styles.css';
 import axios from 'axios';
 // import MaterialTable from "material-table";
 
+var alien_name1;
+var alien_planet1;
+
 const divStyle = {
     position: 'fixed',
     bottom: '15%',
@@ -15,21 +18,31 @@ const divStyle2 = {
     bottom: '10%',
     left: '5%',
   };
+const divStyle3 = {
+    position: 'fixed',
+    bottom: '20%',
+    left: '10%',
+  };  
+const divStyle4 = {
+    position: 'fixed',
+    bottom: '25%',
+    left: '10%',
+  };    
 const tableStyle1 = {
     position: 'relative',
     top: '40%',
-    left: '30%',
+    left: '40%',
     border: '2px solid black',
-    width: '65%',
+    width: '50%',
     height: '65%',
   };
 
 const tableStyle2 = {
   position: 'relative',
   top: '40%',
-  left: '30%',
+  left: '40%',
   border: '1px solid black',
-  width: '65%',
+  width: '50%',
   height: '65%',
 };
 
@@ -39,7 +52,7 @@ const tdStyle = {
 };
 
 const thStyle = {
-  backgroundColor: '132C4D',
+  backgroundColor: '#132C4D',
   color: 'white',
   width: '33.3%',
   text: 'bold',
@@ -58,12 +71,21 @@ class HomePage extends Component {
     super();
     this.state = {
       response: '',
+      alien_name1: alien_name1,
+      alien_planet1: alien_planet1
     };
+    this.create = this.create.bind(this);
     this.show = this.show.bind(this);
   }
 
   componentDidMount(){
     this.show();
+}
+
+async twoFunctions(alien_name1, alien_planet1){
+  console.log("twoFunctions reached")
+  this.create(this, alien_name1, alien_planet1); 
+  this.show(this)
 }
 
 async show(){
@@ -78,19 +100,42 @@ async show(){
   this.setState({response: res.data})
 }
 
+async create (alien_name1, alien_planet1) {
+      console.log("create record with this name and planet: " + alien_name1 + " & " + alien_planet1);
+      const res = await axios.get('http://134.122.34.37:70/create', {params: { alien_name1: alien_name1 , alien_planet1: alien_planet1}})
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+      }
+      ,(error) => {console.log(error);}
+      
+      );
+      this.show();
+    }
 
 render()
 {
-  const { response } = this.state;
+  const { response, alien_name1, alien_planet1 } = this.state;
 return (
-<div style="overflow-x:auto;">
+<div>
 <h1>Humanity's 
 <br></br>alien 
 <br></br>database</h1>
 
-{/* <MaterialTable title="Employee Details" data={response}  /> */}
 
-{/* columns={columns} */}
+<input style={divStyle4}
+  onChange={e => this.setState({ alien_name1: e.target.value }) }
+  maxLength="15"
+/>
+
+<input style={divStyle3}
+  onChange={e => this.setState({ alien_planet1: e.target.value }) }
+  maxLength="15"
+/>
+
 <nav>
 <ul>
 <Link to="/SplashPage">
@@ -99,14 +144,22 @@ return (
   </Link> 
   </ul>
 </nav>
-<AlienButton title="Add your alien sighting" style={divStyle} >
+
+{/* <AlienButton title="Add your alien sighting" style={divStyle} 
+onClick={this.twoFunctions.bind(this, alien_name1, alien_planet1)}
+>
+</AlienButton>  */}
+
+<AlienButton title="Add your alien sighting" style={divStyle} 
+onClick={this.create.bind(this, alien_name1, alien_planet1)}
+>
 </AlienButton> 
 
 <table style={tableStyle1}>
       <tr style={trStyle}>
       <th style={thStyle}>Alien ID</th>
-          <th style={thStyle}>Alien Name</th>
-          <th style={thStyle}>Alien Planet</th>
+          <th style={thStyle}>Alien name</th>
+          <th style={thStyle}>Home planet</th>
           </tr>
       </table>
       
@@ -131,6 +184,7 @@ return (
           </td> */}
         </tr>
       </table>
+      
     );
   })}
 
@@ -145,7 +199,6 @@ export default HomePage;
 
 
 //thoughts on next steps:
-//format the table nicely, add meaningful fields
-//get the "add sighting" button to work and add to the table
+//make it pretty, add background, prompts
 //start applying for jobs
 //then work on making custom pages for each alien
