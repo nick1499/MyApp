@@ -1,8 +1,9 @@
 const hostname = '134.122.34.37';
-const port = 80;
+const port = 50;
 const express = require('express')
 const app = express()
 const path = require("path");
+
 
 //normally the db connection is commented out because mysql is started in NickAPI
 
@@ -33,5 +34,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server running at https://${hostname}:${port}/`);
 });

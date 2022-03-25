@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AlienButton from './AlienButton.js';
 import './styles.css';
 import axios from 'axios';
+const https = require('https');
 // import MaterialTable from "material-table";
 
 var alien_name1;
@@ -20,14 +21,38 @@ const divStyle2 = {
   };
 const divStyle3 = {
     position: 'fixed',
-    bottom: '20%',
-    left: '10%',
+    bottom: '22%',
+    left: '20%',
   };  
 const divStyle4 = {
     position: 'fixed',
-    bottom: '25%',
-    left: '10%',
+    bottom: '27%',
+    left: '20%',
   };    
+const divStyle5 = {
+    position: 'fixed',
+    bottom: '27%',
+    left: '5%',
+    color: 'white'
+  };    
+const divStyle6 = {
+    position: 'fixed',
+    bottom: '22%',
+    left: '5%',
+    color: 'white'
+  };      
+const divStyle7 = {
+    position: 'fixed',
+    bottom: '40%',
+    left: '5%',
+    color: 'white'
+  };      
+const divStyle8 = {
+    position: 'fixed',
+    bottom: '33%',
+    left: '5%',
+    color: 'white'
+  };     
 const tableStyle1 = {
     position: 'relative',
     top: '40%',
@@ -35,6 +60,7 @@ const tableStyle1 = {
     border: '2px solid black',
     width: '50%',
     height: '65%',
+    color: 'white'
   };
 
 const tableStyle2 = {
@@ -49,6 +75,7 @@ const tableStyle2 = {
 const tdStyle = {
   width: '33.3%',
   padding: '15px;',
+  color: 'white'
 };
 
 const thStyle = {
@@ -63,7 +90,29 @@ const trStyle = {
   height: '10px',
   textAlign: 'center',
   border: '2px solid black',
+  color: 'white'
 }
+
+const imgStyle = {
+  width: '100%',
+  // height: '100%',
+  position: 'top',
+  position: 'fixed'
+}
+
+
+const instance = axios.create({
+  httpsAgent: new https.Agent({  
+    rejectUnauthorized: false
+  })
+});
+instance.get('http://www.nfalardeau.com:70/show');
+
+const agent = new https.Agent({  
+  rejectUnauthorized: false
+});
+
+
 
 class HomePage extends Component { 
 
@@ -72,7 +121,9 @@ class HomePage extends Component {
     this.state = {
       response: '',
       alien_name1: alien_name1,
-      alien_planet1: alien_planet1
+      alien_planet1: alien_planet1,
+      text: '',
+      color: 'red'
     };
     this.create = this.create.bind(this);
     this.show = this.show.bind(this);
@@ -85,12 +136,14 @@ class HomePage extends Component {
 async twoFunctions(alien_name1, alien_planet1){
   console.log("twoFunctions reached")
   this.create(this, alien_name1, alien_planet1); 
-  this.show(this)
+  this.show(this);
 }
+
+//used to be http://134.122.34.37:70/show
 
 async show(){
   let res = await axios
-  .get('http://134.122.34.37:70/show')
+  .get('http://www.nfalardeau.com:70/show', { httpsAgent: agent })
   .then(function(res) {
     return res;
   })
@@ -100,7 +153,10 @@ async show(){
   this.setState({response: res.data})
 }
 
+
+
 async create (alien_name1, alien_planet1) {
+  if (typeof alien_name1 !== "undefined" && typeof alien_planet1 !== "undefined" && alien_name1 !== "" && alien_planet1 !== ""){
       console.log("create record with this name and planet: " + alien_name1 + " & " + alien_planet1);
       const res = await axios.get('http://134.122.34.37:70/create', {params: { alien_name1: alien_name1 , alien_planet1: alien_planet1}})
       .then((response) => {
@@ -114,27 +170,57 @@ async create (alien_name1, alien_planet1) {
       
       );
       this.show();
+      this.setState({
+        // ** Update "text" property with new value (this fires render() again)
+        text: "Sighting added!",
+      })
     }
+    else this.setState({
+      // ** Update "text" property with new value (this fires render() again)
+      text: "Please enter the alien's name and home planet!"
+    })
+  }
 
 render()
 {
   const { response, alien_name1, alien_planet1 } = this.state;
 return (
 <div>
-<h1>Humanity's 
-<br></br>alien 
+<img src="Halo_menu2.jpg" style={imgStyle}></img>
+<h1>Humanity's
+<br></br>alien
 <br></br>database</h1>
 
+<p style={divStyle7}>
+  This is an alien database where we can enter 
+  <br></br>
+  and keep track of our alien sightings.
+</p>
+<br></br>
+<p style={divStyle8}>
+{this.state.text}
+</p>
+<b style={divStyle5}>
+Alien name
+</b>
 
-<input style={divStyle4}
+<input style={divStyle4} 
   onChange={e => this.setState({ alien_name1: e.target.value }) }
   maxLength="15"
 />
+<b style={divStyle6}>
+Alien's home planet
+</b>
 
 <input style={divStyle3}
   onChange={e => this.setState({ alien_planet1: e.target.value }) }
   maxLength="15"
 />
+
+<AlienButton title="Add your alien sighting" style={divStyle} 
+onClick={this.create.bind(this, alien_name1, alien_planet1)}
+>
+</AlienButton> 
 
 <nav>
 <ul>
@@ -150,10 +236,7 @@ onClick={this.twoFunctions.bind(this, alien_name1, alien_planet1)}
 >
 </AlienButton>  */}
 
-<AlienButton title="Add your alien sighting" style={divStyle} 
-onClick={this.create.bind(this, alien_name1, alien_planet1)}
->
-</AlienButton> 
+
 
 <table style={tableStyle1}>
       <tr style={trStyle}>
@@ -199,6 +282,11 @@ export default HomePage;
 
 
 //thoughts on next steps:
-//make it pretty, add background, prompts
-//start applying for jobs
-//then work on making custom pages for each alien
+
+//apply for jobs
+//then 
+//ensure the HTTP issue goes away after a few days
+//fix sizing for iPhone
+//React icon, prompt for successful creation
+//prevent add alien if nothing in text boxes
+//work on making custom pages for each alien
